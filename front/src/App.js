@@ -58,7 +58,7 @@ function ProcessoMovimentacao() {
 
 function TabelaProcesso() {
   return (
-    <Flex direction="column" borderWidth='1px' borderColor="black" w="40rem">
+    <Flex direction="column" borderWidth='1px' borderColor="black" w="40rem" mr="2.5rem">
       <Heading as="h1" size="md" padding="1rem" backgroundColor="blackAlpha.200">Movimentações</Heading>
       <Divider />
       <ProcessoMovimentacao />
@@ -70,15 +70,60 @@ function TabelaProcesso() {
   )
 }
 
+function DetalhesProcesso() {
+  return (
+    <Flex direction="column" align="flex-start">
+      <Heading size="xs" mb="0.5rem">
+        Detalhes do processo
+      </Heading>
+      <Text fontSize="sm" mb="0.5rem">
+        Detalhe 1
+      </Text>
+      <Text fontSize="sm">
+        Detalhe 2
+      </Text>
+    </Flex>
+  )
+}
+
+function PartesEnvolvidas() {
+  return (
+    <Flex direction="column" align="flex-start">
+      <Heading size="xs" mb="0.5rem">
+        Partes envolvidas
+      </Heading>
+      <Text fontSize="sm">
+        Nome de alguém
+      </Text>
+      <Text fontSize="xs">
+        Função
+      </Text>
+      <Text fontSize="sm" mt="0.5rem">
+        Nome de alguém
+      </Text>
+      <Text fontSize="xs">
+        Função
+      </Text>
+    </Flex>
+  )
+}
+
 function PaginaProcesso() {
   return (
     <div>
       <Flex align="center" justify="center" direction="column" h="100vh">
         <Busca />
-        <Flex align="start" direction="column" mt="5rem">
+        <Flex align="start" direction="column" mt="3rem">
           <Heading as="h1" size="lg">Processo n. xxxxx</Heading>
           <Text fontSize="sm" mb="1rem">Distribuído em DATA</Text>
-          <TabelaProcesso />
+          <Flex direction="row">
+            <TabelaProcesso />
+            <Flex direction="column">
+              <DetalhesProcesso />
+              <Divider my="1rem" />
+              <PartesEnvolvidas />
+            </Flex>
+          </Flex>
         </Flex>
       </Flex>
     </div>
