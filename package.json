@@ -1,0 +1,25 @@
+{
+  "name": "desafio-consulta-processual",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "client": "cd client && npm i && npm start",
+    "server": "cd server && npm i && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marianabianca/desafio-consulta-processual.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marianabianca/desafio-consulta-processual/issues"
+  },
+  "homepage": "https://github.com/marianabianca/desafio-consulta-processual#readme",
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
+}

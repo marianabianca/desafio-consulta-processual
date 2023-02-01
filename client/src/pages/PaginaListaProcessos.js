@@ -47,7 +47,7 @@ export function PaginaListaProcessos() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/processos?tribunal=${id}`)
+      .get(`http://localhost:3001/processos/tribunal/${id}`)
       .then((response) => {
         setProcessos(response.data.data)
       })

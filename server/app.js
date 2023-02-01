@@ -2,36 +2,57 @@ const express = require("express");
 const app = express();
 const processosRouter = require("./routes/ProcessoRoutes");
 const cors = require("cors");
+const dotenv = require("dotenv");
+const mongoose = require("mongoose");
+const { getAllProcessos, createManyProcessos } = require("./services/ProcessoService");
+const { processos } = require("./seed/ProcessosSeed")
+
+// function to seed db in case it's empty
+seedDB = async () => {
+  let processosInDB = await getAllProcessos()
+  if (processosInDB.length === 0) {
+    await createManyProcessos(processos)
+  }
+}
  
+dotenv.config();
+
 //middleware
 app.use(express.json());
 
 app.use(cors({
   origin: 'http://localhost:3000'
 }));
- 
-app.listen(3001, () => {
-  console.log("Server is running on port 3001");
+
+port = process.env.PORT
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
 
-const mongoose = require("mongoose");
-
 //configure mongoose
+let database = process.env.MONGO_URI;
+
+if (process.env.NODE_ENV === "testing") {
+  database = process.env.MONGO_URI_TEST;
+}
+
 mongoose.set("strictQuery", false);
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/CRUD",
+  database,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-  },
-  (err) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log("Connected to MongoDB");
-    }
   }
-);
+)
+.then(() => {
+  console.log("Database connection established");
+})
+.catch((err) => {
+  console.error(`ERROR: ${err}`);
+});;
+
+// seed db in case it's empty
+seedDB();
 
 app.use("/processos", processosRouter)
  

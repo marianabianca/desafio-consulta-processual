@@ -84,9 +84,9 @@ export function PaginaProcesso() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/processos?cnj=${cnj}`)
+      .get(`http://localhost:3001/processos/cnj/${cnj}`)
       .then((response) => {
-        setProcesso(response.data.data[0])
+        setProcesso(response.data.data)
       })
       .catch(_ =>
         setProcesso(notFound)
